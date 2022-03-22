@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rapport{% endblock %}
+
+{% block body %}
+    <h1 style="text-align: center">Rapport</h1>
+    <button type="button" class="btn btn-primary">
+        <a style="color: white; text-decoration: none" href="{{ path('rapport_new') }}">Créer</a>
+    </button>
+    <form class="form-inline my-2 my-lg-0" method="get" style="text-align: center">
+        <input  type="date" name="date" aria-label="Recherche">
+        <button class="btn btn-primary" type="submit">Recherche</button>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Motif</th>
+                <th>Bilan</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rapport in rapports %}
+            <tr>
+                <td>{{ rapport.id }}</td>
+                <td>{{ rapport.date ? rapport.date|date('d-m-Y') : '' }}</td>
+                <td>{{ rapport.motif }}</td>
+                <td>{{ rapport.bilan }}</td>
+                <td>
+                    <button type="button" class="btn btn-primary">
+                    <a style="color: white; text-decoration: none" href="{{ path('rapport_show', {'id': rapport.id}) }}">Voir</a>
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                    <a style="color: white; text-decoration: none" href="{{ path('rapport_edit', {'id': rapport.id}) }}">Modifier</a>
+                    </button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun rapport trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medecin{% endblock %}
+
+{% block body %}
+    <h1>Medecin</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ medecin.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ medecin.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ medecin.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ medecin.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ medecin.tel }}</td>
+            </tr>
+            <tr>
+                <th>SpecialiteComplementaire</th>
+                <td>{{ medecin.specialiteComplementaire }}</td>
+            </tr>
+            <tr>
+                <th>Departement</th>
+                <td>{{ medecin.departement }}</td>
+            </tr>
+        `   <tr>
+                {% for rapport in medecin.rapports %}
+                <td>
+                    {{ (rapport.medecin) }}
+                    <a class="btn btn-outline-dark" href="{{ path('rapport_show', {id: rapport.id}) }}">Voir rapport</a>
+
+                </td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+
+
+    <button type="button" class="btn btn-primary">
+        <a style="color: white; text-decoration: none" href="{{ path('medecin_edit', {'id': medecin.id}) }}">Modifier</a>
+    </button>
+    <button type="button" class="btn btn-primary">
+        <a style="color: white; text-decoration: none" href="{{ path('medecin_index') }}">retour</a>
+    </button>
+{#    {{ include('medecin/_delete_form.html.twig') }}#}
+{% endblock %}

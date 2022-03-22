@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medecin{% endblock %}
+
+{% block body %}
+    <h1 style="text-align: center">Medecin</h1>
+  {#  <button type="button" class="btn btn-primary">
+        <a style="color: white; text-decoration: none" href="{{ path('medecin_new') }}">Créer</a>
+    </button>#}
+    <form class="form-inline my-2 my-lg-0" method="get" style="text-align: center">
+        <input type="search" placeholder="Chercher un medecin" name="nom" aria-label="Recherche">
+        <button class="btn btn-primary" type="submit">Recherche</button>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Adresse</th>
+                <th>Tel</th>
+                <th>SpecialiteComplementaire</th>
+                <th>Departement</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medecin in medecins %}
+            <tr>
+
+                <td>{{ medecin.id }}</td>
+                <td>{{ medecin.nom }}</td>
+                <td>{{ medecin.prenom }}</td>
+                <td>{{ medecin.adresse }}</td>
+                <td> <a href="tel: + ${medecin.tel}">{{ medecin.tel }}</a></td>
+                <td>{{ medecin.specialiteComplementaire }}</td>
+                <td>{{ medecin.departement }}</td>
+                <td>
+                    <button type="button" class="btn btn-primary">
+                      <a style="color: white; text-decoration: none" href="{{ path('medecin_show', {'id': medecin.id}) }}">Voir</a>
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        <a style="color: white; text-decoration: none" href="{{ path('medecin_edit', {'id': medecin.id}) }}">Modifier</a>
+                    </button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

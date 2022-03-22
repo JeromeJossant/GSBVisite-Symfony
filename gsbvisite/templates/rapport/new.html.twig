@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Rapport{% endblock %}
+
+{% block body %}
+    <div style="text-align: center">
+        <h1>Creation d'un nouveau rapport</h1>
+        <div >
+            {{ include('rapport/_form.html.twig') }}
+        </div>
+
+        <button class="btn btn-primary" >
+            <a style="color: white; text-decoration: none" href="{{ path('rapport_index') }}">Retour</a>
+        </button>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const addFormToCollection = (e) => {
+            const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+            const item = document.createElement('li');
+            item.innerHTML = collectionHolder
+                .dataset
+                .prototype
+                .replace(
+                    /__name__/g,
+                    collectionHolder.dataset.index
+                );
+            collectionHolder.appendChild(item);
+            collectionHolder.dataset.index++;
+        };
+        document
+            .querySelectorAll('.add_item_link')
+            .forEach(btn => btn.addEventListener("click", addFormToCollection));
+    </script>
+{% endblock %}

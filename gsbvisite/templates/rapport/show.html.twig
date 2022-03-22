@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rapport{% endblock %}
+
+{% block body %}
+        <h1 style="text-align: center">Rapport</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ rapport.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ rapport.date ? rapport.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Motif</th>
+                <td>{{ rapport.motif }}</td>
+            </tr>
+            <tr>
+                <th>Bilan</th>
+                <td>{{ rapport.bilan }}</td>
+            </tr>
+            <tr>
+                <td>
+                    {% for offrir in rapport.offrirs %}
+                        {{ (offrir.medicament) }}
+                        <strong>{{ (offrir.quantite) }}</strong>
+                        <br>
+                    {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-primary">
+        <a style="color: white;text-decoration: none" href="{{ path('rapport_index') }}">Retour</a>
+    </button>
+
+    <button type="button" class="btn btn-primary">
+        <a style="color: white;text-decoration: none" href="{{ path('rapport_edit', {'id': rapport.id}) }}">Modifier</a>
+    </button>
+{#    {{ include('rapport/_delete_form.html.twig') }}#}
+{% endblock %}

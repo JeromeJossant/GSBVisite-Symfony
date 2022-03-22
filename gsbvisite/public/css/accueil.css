@@ -1,0 +1,6 @@
+body{
+    background-image: url('https://img.freepik.com/vecteurs-libre/molecules-abstraites-fond-gris-doux-structures-moleculaires-brin-adn-reseau-neuronal-genie-genetique-concept-scientifique-technologique_120542-594.jpg?size=626&ext=jpg'); /* mettre une image de fond */
+    background-repeat: no-repeat; /* ne pas la repeter */
+    background-size: cover;
+}
+
