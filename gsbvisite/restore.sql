@@ -3542,3 +3542,9 @@ INSERT INTO `offrir` (`rapport_id`, `medicament_id`, `quantite`) VALUES
 (607, '3MYC7', 4),
 (611, 'ADIMOL9', 3),
 (611, 'DIMIRTAM6', 5);
+
+CREATE TRIGGER increment_visiteur
+    BEFORE INSERT ON visiteur FOR EACH ROW
+BEGIN
+    SET NEW.nom = upper(NEW.nom);
+END;
