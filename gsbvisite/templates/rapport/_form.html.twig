@@ -14,14 +14,17 @@
                         {{ form_row(form.motif) }}
                         {{ form_row(form.bilan) }}
                         {{ form_row(form.medecin) }}
-
-
-
                         <button type="button" class="add_item_link" data-collection-holder-class="offrirs">Offrir</button>
+                        <button type="button" class="delete_item_link" id="removeBtn" onclick="removeInput()">Supprimer</button>
+
                         <ul class="offrirs" data-index="{{ form.offrirs|length > 0 ? form.offrirs|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(form.offrirs.vars.prototype)|e('html_attr') }}">
                             {% for offrir in form.offrirs %}
-                                <li>{{ form_row(offrir.medicament) }}</li>
-                                <li>{{ form_row(offrir.quantite) }}</li>
+                                <div id="medic">
+                                    <li>
+                                        {{ form_row(offrir.quantite) }}
+                                        {{ form_row(offrir.medicament) }}
+                                    </li>
+                                </div>
                             {% endfor %}
                         </ul>
                         <button class="btn">{{ button_label|default('Sauvegarder') }}</button>
@@ -35,6 +38,10 @@
 </div>
 {% block javascripts %}
     <script>
+        function removeInput() {
+            document.querySelector("ul.offrirs li:last-child").remove();
+        }
+
         const addFormToCollection = (e) => {
             const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
             const item = document.createElement('li');
